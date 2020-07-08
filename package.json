@@ -1,0 +1,22 @@
+{
+  "name": "range-expression",
+  "version": "1.0.0",
+  "description": "string range expression to list. demo: \"VIP-[A-Z]-[1-10]\" output: [\"VIP-A-1\", \"VIP-A-2\", ..., \"VIP-Z-10\"]",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yefei/range-expression.git"
+  },
+  "keywords": [
+    "utils"
+  ],
+  "author": "Yefei",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yefei/range-expression/issues"
+  },
+  "homepage": "https://github.com/yefei/range-expression#readme"
+}

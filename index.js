@@ -12,13 +12,13 @@
 // A-0-A
 // A-0-B
 
+const RE = /(\[(([a-z]\-[a-z])|(\d+\-\d+))\])/ig;
+
 function parse(text, limit = 1000, exclude = null) {
-  // eslint-disable-next-line no-useless-escape
-  const regexp = new RegExp(/(\[(([a-z]\-[a-z])|(\d+\-\d+))\])/, 'ig')
   const array = []
   const tmp = []
   let exp
-  while ((exp = regexp.exec(text)) !== null) {
+  while ((exp = RE.exec(text)) !== null) {
     array.push(exp)
     tmp.push([])
     tmp.push([])
@@ -50,7 +50,7 @@ function parse(text, limit = 1000, exclude = null) {
     // number
     if (m[4]) {
       let [a, b] = m[4].split('-')
-      for (let i = a; i <= b; i++) {
+      for (let i = Number(a); i <= Number(b); i++) {
         if (exclude && exclude.indexOf(String(i)) !== -1) continue
         tmp[i2].push(i)
         if (tmp[i2].length === limit) break
@@ -79,4 +79,4 @@ function parse(text, limit = 1000, exclude = null) {
 
 module.exports = parse
 
-// console.log('out:', parse('VIP-[A-d]-([1-10])', 100, exclude=['b',4]))
+// console.log('out:', parse('[95-110]', 100, exclude=['b',4]))

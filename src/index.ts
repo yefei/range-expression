@@ -14,10 +14,10 @@
 
 const RE = /(\[(([a-z]\-[a-z])|(\d+\-\d+))\])/ig;
 
-function parse(text, limit = 1000, exclude = null) {
-  const array = []
-  const tmp = []
-  let exp
+export default function parse(text: string, limit = 1000, exclude?: string[]) {
+  const array: RegExpExecArray[] = [];
+  const tmp: string[][] = [];
+  let exp: RegExpExecArray | null;
   while ((exp = RE.exec(text)) !== null) {
     array.push(exp)
     tmp.push([])
@@ -31,8 +31,7 @@ function parse(text, limit = 1000, exclude = null) {
 
   let j = 0
   let substrIndex = 0
-  for (let arrIndex in array) {
-    arrIndex = Number(arrIndex)
+  for (const arrIndex in array) {
     const m = array[arrIndex]
     const [i1, i2] = [j++, j++]
     tmp[i1] = [text.substring(substrIndex, m.index)]
@@ -52,16 +51,16 @@ function parse(text, limit = 1000, exclude = null) {
       let [a, b] = m[4].split('-')
       for (let i = Number(a); i <= Number(b); i++) {
         if (exclude && exclude.indexOf(String(i)) !== -1) continue
-        tmp[i2].push(i)
+        tmp[i2].push(String(i))
         if (tmp[i2].length === limit) break
       }
     }
   }
   tmp[tmp.length - 1] = [text.substring(substrIndex)]
 
-  const results = []
-  const result = []
-  function mig(arr, index) {
+  const results: string[] = []
+  const result: string[] = []
+  function mig(arr: string[][], index: number) {
     for (var i = 0; i < arr[index].length; i++) {
       result[index] = arr[index][i];
       if (index !== arr.length - 1) {
@@ -76,7 +75,5 @@ function parse(text, limit = 1000, exclude = null) {
   mig(tmp, 0)
   return results
 }
-
-module.exports = parse
 
 // console.log('out:', parse('[95-110]', 100, exclude=['b',4]))

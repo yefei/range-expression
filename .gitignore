@@ -1,0 +1,14 @@
+log/
+npm-debug.log
+yarn-error.log
+node_modules/
+package-lock.json
+.DS_Store
+.config/
+*.sw*
+*.un~
+.github/
+dist/
+.vscode/
+.yarn/
+.pnp.*

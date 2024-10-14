@@ -5,7 +5,7 @@ demo
 ```js
 const rangeExpression = require('range-expression');
 
-console.log('out:', rangeExpression('VIP-[A-d]-([1-100])', 100, exclude=['C','a',4]))
+console.log('out:', rangeExpression('VIP-[A-d]-([1-100])', 100, ['C','a',4]))
 
 /*
 out:
